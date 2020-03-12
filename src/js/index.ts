@@ -1,12 +1,29 @@
-interface Person {
-    firstName: string;
-    lastName: string;
+let element: HTMLDivElement = <HTMLDivElement>document.getElementById("content");
+
+let AlterTextButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("AlterTextButton")
+AlterTextButton.addEventListener("click", caseApplicator);
+
+let inputSpace: HTMLInputElement = <HTMLInputElement>document.getElementById("TextInputField");
+
+
+let caseSelector: HTMLSelectElement = <HTMLSelectElement>document.getElementById("CapsOptions");
+
+
+
+function caseApplicator() {
+    let enteredString: string = inputSpace.value;
+    let caseState: string = caseSelector.value;
+    console.log(caseState);
+    if (caseState === "ToUpper") {
+        console.log("ToUpper foretaget")
+        enteredString = enteredString.toUpperCase();
+        console.log(enteredString)
+        element.innerHTML = enteredString;
+
+    }
+
+    if (caseState === "ToLower") {
+        element.innerHTML = enteredString.toLowerCase();
+    }
 }
 
-function greeter(person: Person): string {
-    return "Hello, " + person.firstName + " " + person.lastName;
-}
-let user: Person = { firstName: "John", lastName: "Doe" };
-
-let element: HTMLDivElement = <HTMLDivElement> document.getElementById("content");
-element.innerHTML = greeter(user);
